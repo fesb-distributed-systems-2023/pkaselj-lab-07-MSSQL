@@ -1,0 +1,31 @@
+USE [EasyMailDB]
+GO
+
+/****** Object:  Table [dbo].[Emails]    Script Date: 1/22/2024 7:44:14 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Emails](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[SenderID] [int] NOT NULL,
+	[Subject] [nvarchar](100) NOT NULL,
+	[Body] [nvarchar](100) NULL,
+	[Timestamp] [nvarchar](100) NOT NULL,
+ CONSTRAINT [PK_Emails] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Emails]  WITH CHECK ADD  CONSTRAINT [FK_Emails_Users] FOREIGN KEY([SenderID])
+REFERENCES [dbo].[Users] ([ID])
+GO
+
+ALTER TABLE [dbo].[Emails] CHECK CONSTRAINT [FK_Emails_Users]
+GO
+
+
